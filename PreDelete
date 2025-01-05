@@ -1,0 +1,31 @@
+import java.util.*;
+import java.sql.*;
+public class PreDelete
+{
+	
+		public static void main(String[] args)throws Exception
+		{
+		   try
+		   {
+			   Class.forName("org.postgresql.Driver");
+			   Connection con=DriverManager.getConnection("jdbc:postgresql:postgres","postgres","root");
+			   Scanner sc=new Scanner(System.in);
+			   
+			   PreparedStatement pst=con.prepareStatement("delete from Emp where eno=?");
+			   System.out.println("Enter the Emp no to delete the record:");
+			   int no=sc.nextInt();
+			   pst.setInt(1,no);
+			   
+			   pst.executeUpdate();
+			   System.out.println("Record Deleted.....");
+			   
+			   
+			   
+		   }catch(Exception e)
+		   {
+			   System.out.println(e);
+			   
+		   }
+		}
+
+	}
